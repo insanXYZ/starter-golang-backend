@@ -1,8 +1,8 @@
 package main
 
 import (
-	"github.com/insanXYZ/starter-golang-backend/bootstrap"
-	"github.com/insanXYZ/starter-golang-backend/config"
+	"backend/bootstrap"
+	"backend/config"
 )
 
 func main() {
@@ -20,5 +20,5 @@ func main() {
 
 	bootstrapInit.Run()
 
-	echo.Logger.Fatal(echo.Start("WEB_PORT"))
+	echo.Logger.Fatal(echo.Start(viper.GetString("WEB_PORT")))
 }

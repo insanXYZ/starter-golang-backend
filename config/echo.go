@@ -9,5 +9,6 @@ import (
 func NewEcho(viper *viper.Viper) *echo.Echo {
 	e := echo.New()
 	e.Use(middleware.CORS())
+	e.Use()
 	return e
 }
