@@ -11,8 +11,8 @@ func (r *Repository[T]) Create(db *gorm.DB, entity *T) error {
 	return db.Create(entity).Error
 }
 
-func (r *Repository[T]) Where(db *gorm.DB, dst *T) error {
-	return db.Where(dst).Take(dst).Error
+func (r *Repository[T]) Where(db *gorm.DB,cond *T, dst *T) error {
+	return db.Where(cond).Take(dst).Error
 }
 
 func (r *Repository[T]) CountWhere(db *gorm.DB, where any, args ...any) int {

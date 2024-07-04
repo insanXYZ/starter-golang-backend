@@ -6,13 +6,14 @@ import (
 	"backend/repository"
 	"errors"
 	"fmt"
+	"time"
+
 	"github.com/go-playground/validator/v10"
 	"github.com/golang-jwt/jwt/v5"
 	"github.com/google/uuid"
 	"github.com/spf13/viper"
 	"golang.org/x/crypto/bcrypt"
 	"gorm.io/gorm"
-	"time"
 )
 
 type UserService struct {
@@ -64,11 +65,13 @@ func (service *UserService) Login(req *model.LoginUser) (*string, error) {
 		return nil, err
 	}
 
-	user := &entity.User{
+	userCond := &entity.User{
 		Email: req.Email,
 	}
 
-	err = service.UserRepo.Where(service.DB, user)
+	user := new(entity.User)
+
+	err = service.UserRepo.Where(service.DB, userCond,user)
 	if err != nil {
 		return nil, err
 	}
